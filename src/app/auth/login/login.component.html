@@ -1,0 +1,29 @@
+<div id="login-bg" class="container-fluid bg-dark h-100">
+  <div>
+    <img class="my-4" src="../../../assets/img/netflix-logo.png" alt="netflix-logo" width="250px">
+  </div>
+  <div class="login-i-overlay container-fluid ">
+    <form #form="ngForm" (ngSubmit)="onSubmit(form.value)" class="needs-validation p-5">
+      <h2 class="text-white fs-1 mb-4">Accedi</h2>
+      <p id="i" class="d-none text-danger">L'utente non esiste</p>
+      <div>
+        <input ngModel name="email" type="email" class="p-3 rounded my-3 form-control" #email="ngModel" id="email" placeholder="Email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required />
+        <p class="text-danger" *ngIf="email.touched && email.invalid"><strong>Compilare correttamente il campo!</strong></p>
+      </div>
+
+      <div>
+        <input ngModel name="password" type="password" class="p-3 rounded my-3 form-control" #pass="ngModel" id="pass" placeholder="Password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" required />
+        <p class="text-danger" *ngIf="pass.touched && pass.invalid"><strong>Inserire minimo 8 caratteri, almeno una maiuscola, un numero, e un carattere speciale.</strong></p>
+      </div>
+      <div>
+        <button class="p-3 rounded my-3 bg-r text-white btn form-control" type="submit" [disabled]="pass.value == '' || email.value == '' || email.touched && email.invalid || email.touched && !email.value.includes('@' || '.')">Accedi</button>
+        <p class="text-secondary text-center mt-5">Prima volta su Netflix?
+          <span>
+            <a class="" type="button" (click)="register()">Registrati</a><br>
+          </span>
+
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

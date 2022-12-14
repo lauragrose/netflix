@@ -1,0 +1,31 @@
+<div id="login-bg" class="container-fluid bg-light h-100">
+  <div>
+    <img class="my-4" src="../../../assets/img/netflix-logo.png" alt="netflix-logo" width="250px" (click)="toLogin()">
+  </div>
+  <div class="login-i-overlay container-fluid ">
+    <form #form="ngForm" (ngSubmit)="register(form)" class=" p-5">
+      <h2 class=" fs-1 mb-4">Registrati!</h2>
+      <p class="text-danger" *ngIf="c"><strong>Utente già registrato!</strong></p>
+      <div>
+        <input ngModel name="name" type="text" class="p-3 rounded my-3 form-control" id="name" placeholder="Nome" #name required/>
+      </div>
+      <div>
+        <input ngModel name="email" type="text" class="p-3 rounded my-3 form-control" id="email" #email="ngModel" placeholder="Email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required />
+        <p class="text-danger" *ngIf="email.touched && email.invalid"><strong>Compilare correttamente il campo!</strong></p>
+        <p class="text-danger" *ngIf="c"><strong>Inserire un'email diversa</strong></p>
+      </div>
+      <div>
+        <input ngModel name="password" type="password" class="p-3 rounded my-3 form-control" id="password" #pass="ngModel" placeholder="Password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$" required/>
+        <p class="text-danger" *ngIf="pass.touched && pass.invalid"><strong>Inserire minimo 8 caratteri, almeno una maiuscola, un numero, e un carattere speciale.</strong></p>
+      </div>
+      <div>
+        <button class="p-3 rounded my-3 bg-dark text-light btn form-control" type="submit" [disabled]="name.value == '' || email.value == '' || pass.invalid">Registrati</button>
+        <p class="text-secondary text-center mt-5">Sei già registrato?
+          <span>
+            <a type="button" (click)="toLogin()"><span class="text-black">Effettua il Login.</span></a><br>
+          </span>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
